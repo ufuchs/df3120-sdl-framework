@@ -1,7 +1,7 @@
 #include "common.h"
 #include "picframe.h"
 
-
+/*
 int main() {
 	int i=0;
 
@@ -14,3 +14,4 @@ int main() {
 		}
 	}
 }
+*/

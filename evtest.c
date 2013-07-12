@@ -296,6 +296,7 @@ char **names[EV_MAX + 1] = {
 #define LONG(x) ((x)/BITS_PER_LONG)
 #define test_bit(bit, array)	((array[LONG(bit)] >> OFF(bit)) & 1)
 
+/*
 int main (int argc, char **argv)
 {
 	int fd, rd, i, j, k;
@@ -388,5 +389,5 @@ int main (int argc, char **argv)
 
 	}
 }
-
+*/
 
