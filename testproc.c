@@ -67,8 +67,6 @@ int handle_input() {
 	int i=0;
 	struct LList_t *tmp_window = NULL;
 
-//	picframe_gpio_handle_events();
-
 	while (picframe_get_event(&event)) {
 		switch (event.type) {
 			case SDL_QUIT:
@@ -463,7 +461,7 @@ int fifth_window_loop() {
         }
         return 0;
         // TODO: Free up all the images when the window is closed
-	SDL_FreeSurface(security_cam.surface);
+//	SDL_FreeSurface(security_cam.surface);
 }
 
 /*

@@ -32,7 +32,7 @@ int picframe_init() {
 
 	/* Aight, lets make our first default window */
 	_num_windows = 0;
-	struct LList_t *node = picframe_add_window();
+//	struct LList_t *node = picframe_add_window();
 
 	picframe_gpio_init();
 
@@ -85,7 +85,7 @@ int picframe_gpio_setcfg(int gpio, int dir, int edge) {
 }
 
 /* These are pretty DF3120 specific! */
-int picframe_gpio_init() {
+void picframe_gpio_init() {
 	picframe_gpio_export(1, 162);
 	picframe_gpio_export(1, 163);
 	picframe_gpio_export(1, 164);
@@ -116,7 +116,7 @@ int picframe_gpio_init() {
 	_buttons[2].pval = 1;
 }
 
-int picframe_gpio_cleanup() {
+void picframe_gpio_cleanup() {
 	close(_gpio_fds[0]);
 	close(_gpio_fds[1]);
 	close(_gpio_fds[2]);
@@ -220,7 +220,7 @@ int picframe_get_event(SDL_Event *event) {
 	return rc;
 }
 
-int picframe_update(struct LList_t *window) {
+void picframe_update(struct LList_t *window) {
 	struct LList_t *curr = window->data;
 	Element_t *element = NULL;
 	SDL_Surface *ts;
@@ -398,8 +398,6 @@ int picframe_add_button_text(Element_t *b, SDL_Rect *rect, int textsize, char *t
 }
 
 int picframe_add_progress_bar(Element_t *b, SDL_Rect *rect, int val) {
-        SDL_Color fg = {0,0,0,0};
-        SDL_Color bg = {255,255,255,0};
 
         SDL_Surface *tmp = NULL;
         SDL_Rect nr;
@@ -424,7 +422,7 @@ int picframe_add_progress_bar(Element_t *b, SDL_Rect *rect, int val) {
 	return 0;
 }
 
-int picframe_update_progress_bar(Element_t *b, int val) {
+void picframe_update_progress_bar(Element_t *b, int val) {
 	debug_printf("Updating progress bar: %d%\n", val);
 	/* Clean the progress bar */
 	SDL_Rect nr;
@@ -438,7 +436,7 @@ int picframe_update_progress_bar(Element_t *b, int val) {
 	
 	nr.w = (int)((val/100.0)*(b->rect.w-4));
 	SDL_FillRect(b->surface, &nr, SDL_MapRGB(b->surface->format, 0,0,0));
-	return 0;
+
 }
 
 void picframe_cleanup() {
